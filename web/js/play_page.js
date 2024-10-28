@@ -120,9 +120,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const js_data = JSON.parse(episodeSelector.value);
         // console.log('选择的集数:', data);
         document.title = g_title + "-" + js_data.episode_name;
-        const selectedEpisode = js_data.play_url;
-        if (selectedEpisode.indexOf("m3u8") > 0) {
-            play_url(selectedEpisode)
+        play_url_plus(js_data);
+    });
+
+
+    function play_url_plus(js_data) {
+        const playUrl = js_data.play_url;
+        if (playUrl.indexOf("m3u8") > 0) {
+            play_url(playUrl)
         } else {
             const json_data = {
                 "from_code": js_data.from_code,
@@ -154,11 +159,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
-    });
-
-    // play_url("https://cos.m3u8hw8.com/share/64a74e2103e744c698f56744337a9d08.m3u8");
-
-    function get_parse_url(global_id) {
     }
 
 // var json_data = {"from_code":"youku","play_url":"","episode_id":"24929681","type":"play","timestamp":get_timestamp()}
@@ -229,10 +229,12 @@ document.addEventListener('DOMContentLoaded', () => {
         episode_select.innerHTML = "";//清空内容
 
         for (let i = 0; i < play_list.length; i++) {
+            //添加播放源
             const option = document.createElement('option');
             option.value = play_list[i]['code'];
             option.text = play_list[i]['name'];
             source_select.appendChild(option);
+            //如果找到地址，直接把地址添加到集数中，并且自动播放第一个
             if (play_list[i]['list'].length > 0 && play_list[i]['list'][0]['play_url'].indexOf("m3u8") !== -1) {
                 for (let j = 0; j < play_list[i]['list'].length; j++) {
                     const episode_option = document.createElement('option');
@@ -278,6 +280,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     episode_option.text = datas[i]['episode_name'];
                     // episode_option.dataset.data = datas[i];
                     episode_select.append(episode_option)
+                    if (i === 0) {
+                        play_url_plus(datas[i]);
+                    }
+
                 }
             },
             fail: function (status) {
