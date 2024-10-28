@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSEncrypt Example</title>
+    <script src="path/to/jsencrypt.min.js"></script> <!-- 替换为JSEncrypt库的实际路径 -->
+</head>
+<body>
+    <script>
+        // 生成密钥对
+        var crypt = new JSEncrypt({default_key_size: 2048});
+        var publicKey = crypt.getPublicKey();
+        var privateKey = crypt.getPrivateKey();
+
+        // 显示生成的密钥（仅用于示例，实际应用中不要公开私钥）
+        console.log("Public Key:", publicKey);
+        console.log("Private Key:", privateKey);
+
+        // 加密数据
+        var plaintext = "Hello, World!";
+        crypt.setPublicKey(publicKey); // 设置公钥，用于加密
+        var encrypted = crypt.encrypt(plaintext);
+        console.log("Encrypted:", encrypted);
+
+        // 解密数据
+        crypt.setPrivateKey(privateKey); // 设置私钥，用于解密
+        var decrypted = crypt.decrypt(encrypted);
+        console.log("Decrypted:", decrypted);
+    </script>
+</body>
+</html>

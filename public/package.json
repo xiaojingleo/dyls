@@ -1,0 +1,18 @@
+{
+  "name": "dyls",
+  "version": "1.0.0",
+  "description": "白嫖者的天堂",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./scripts.js",
+    "pkg": "pkg .--out-path=./dist"
+  },
+  "bin": "../server.js",
+  "assets": "./styles.css",
+  "outputPath": "./dist",
+  "author": "madstudio",
+  "license": "ISC",
+  "dependencies": {
+    "uniq": "^1.0.1"
+  }
+}

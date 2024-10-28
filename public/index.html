@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频分类列表</title>
+    <style>
+        /* 简单的CSS样式 */
+        #category-nav button {
+            margin: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        #video-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        #video-list li {
+            padding: 5px;
+            border-bottom: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div id="category-nav">
+        <button data-category="电影">电影</button>
+        <button data-category="电视剧">电视剧</button>
+        <button data-category="综艺">综艺</button>
+        <button data-category="动漫">动漫</button>
+        <button data-category="短剧">短剧</button>
+    </div>
+    <ul id="video-list">
+        <!-- 视频列表项将在这里动态生成 -->
+    </ul>
+    <script type ="module" src="node-rsa/src"></script>
+<!--    <script type ="module" src="crypto-js"></script>-->
+    <script type ="module" src="axios"></script>
+    <script src="get_list.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>
